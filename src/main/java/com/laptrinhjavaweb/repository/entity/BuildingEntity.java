@@ -1,13 +1,20 @@
 package com.laptrinhjavaweb.repository.entity;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "building")
-public class BuildingEntity {
+@NamedQuery(name ="BuildingEntity.Find_All",query = "FROM BuildingEntity")
+public class
+BuildingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,38 +26,9 @@ public class BuildingEntity {
     @Column(name = "numberofbasement")
     private Integer numberOfBasement;
 
-    @OneToMany(mappedBy = "buildingEntity")
-    private List<RentAreaEntity> rentAreaEntityList= new ArrayList<>();
+    @OneToMany(mappedBy = "buildingEntity", fetch = FetchType.LAZY)
+    private List<RentAreaEntity> rentAreaEntity= new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public List<RentAreaEntity> getRentAreaEntityList() {
-        return rentAreaEntityList;
-    }
-
-    public void setRentAreaEntityList(List<RentAreaEntity> rentAreaEntityList) {
-        this.rentAreaEntityList = rentAreaEntityList;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getNumberOfBasement() {
-        return numberOfBasement;
-    }
-
-    public void setNumberOfBasement(Integer numberOfBasement) {
-        this.numberOfBasement = numberOfBasement;
-    }
 }

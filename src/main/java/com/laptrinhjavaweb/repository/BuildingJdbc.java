@@ -4,7 +4,6 @@ import com.laptrinhjavaweb.repository.entity.BuildingEntity;
 
 import java.util.List;
 
-public interface BuildingRepository {
+public interface BuildingJdbc {
     List<BuildingEntity> findAll();
-    BuildingEntity findById(Long id);
 }

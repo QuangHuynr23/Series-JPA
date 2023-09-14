@@ -25,11 +25,11 @@ public class RoleEntity {
     @Column(unique = true, nullable = false)
     private String code;
 
-//    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-//    private List<UserEntity> users = new ArrayList<>();
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private List<UserEntity> users = new ArrayList<>();
 
-    @OneToMany(mappedBy = "roleEntity")
-    private List<UserRoleEntity> userRoleEntities = new ArrayList<>();
+//    @OneToMany(mappedBy = "roleEntity")
+//    private List<UserRoleEntity> userRoleEntities = new ArrayList<>();
 
 
 }
