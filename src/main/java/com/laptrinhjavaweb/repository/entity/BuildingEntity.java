@@ -13,8 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "building")
 @NamedQuery(name ="BuildingEntity.Find_All",query = "FROM BuildingEntity")
-public class
-BuildingEntity {
+public class BuildingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

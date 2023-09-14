@@ -21,6 +21,6 @@ public class RentAreaAPI {
      @GetMapping("/api/rentareas")
     public List<RentAreaDTO> getRentArea(@RequestParam(value = "buildingid", required = false) Long buildingId){
 
-        return null;
+        return buildingService.findRentAreaByBuilding(buildingId);
      }
 }

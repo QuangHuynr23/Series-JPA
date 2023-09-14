@@ -5,6 +5,7 @@ import com.laptrinhjavaweb.model.dto.RentAreaDTO;
 import com.laptrinhjavaweb.model.response.BuildingSearchResponse;
 import com.laptrinhjavaweb.repository.BuildingJdbc;
 import com.laptrinhjavaweb.repository.BuildingRepository;
+import com.laptrinhjavaweb.repository.RentAreaRepository;
 import com.laptrinhjavaweb.repository.entity.BuildingEntity;
 import com.laptrinhjavaweb.repository.entity.RentAreaEntity;
 import com.laptrinhjavaweb.service.BuildingService;
@@ -25,6 +26,9 @@ public class BuildingServiceImpl implements BuildingService {
     private BuildingRepository buildingRepository;
 
     @Autowired
+    private RentAreaRepository rentAreaRepository;
+
+    @Autowired
     private RentAreaConverter rentAreaConverter;
     @Override
     public List<BuildingSearchResponse> findAll() {
@@ -41,11 +45,21 @@ public class BuildingServiceImpl implements BuildingService {
         return results;
     }
 
+//    @Override
+//    public List<RentAreaDTO> findRentAreaByBuilding(Long buildingId) {
+//        List<RentAreaDTO> results = new ArrayList<>();
+//        BuildingEntity buildingEntity = buildingRepository.findById(buildingId);
+//        List<RentAreaEntity> rentAreaEntities = buildingEntity.getRentAreaEntity();
+//        results = rentAreaEntities.stream().map(item-> rentAreaConverter.converterEntityToDTO(item)).collect(Collectors.toList());
+//        return results;
+//    }
+
     @Override
     public List<RentAreaDTO> findRentAreaByBuilding(Long buildingId) {
         List<RentAreaDTO> results = new ArrayList<>();
         BuildingEntity buildingEntity = buildingRepository.findById(buildingId);
-        List<RentAreaEntity> rentAreaEntities = buildingEntity.getRentAreaEntity();
+//        List<RentAreaEntity> rentAreaEntities = buildingEntity.getRentAreaEntity();
+        List<RentAreaEntity> rentAreaEntities = rentAreaRepository.findByBuilding(buildingId);
         results = rentAreaEntities.stream().map(item-> rentAreaConverter.converterEntityToDTO(item)).collect(Collectors.toList());
         return results;
     }
